@@ -1,0 +1,3 @@
+rootProject.name = 'registration_rn'
+
+include ':app'
