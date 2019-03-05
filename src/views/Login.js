@@ -50,12 +50,12 @@ class Login extends Component {
         <Text style={style.title}>Login</Text>
         <View style={style.field}>
           <MKTextField
-            text={this.state.NIK}
+            value={this.state.NIK}
             onTextChange={NIK => this.setState({ NIK })}
             placeholder={'Employee ID...'}
           />
           <MKTextField
-            text={this.state.password}
+            value={this.state.password}
             onTextChange={password => this.setState({ password })}
             placeholder={'Password...'}
             password={true}

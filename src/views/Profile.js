@@ -10,13 +10,13 @@ class Profile extends Component {
   }
 
   render() {
-    let { name, jobPosition } = this.props;
+    let { employeeName, jobPosition } = this.props;
     return (
       <View style={{marginLeft: 10}}>
         <Text style={{marginTop: 10, fontSize: 30, textAlign: 'center'}}>My Profile</Text>
         <View style={{flexDirection: 'row', marginTop: 10}}>
           <Text style={{width: 75}}>Name:</Text>
-          <Text>{name}</Text>
+          <Text>{employeeName}</Text>
         </View>
         <View style={{flexDirection: 'row', marginTop: 10}}>
           <Text style={{width: 75}}>Job title:</Text>
@@ -35,9 +35,9 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => {
-  const { name, jobPosition } = state;
+  const { employeeName, jobPosition } = state;
 
-  return { name, jobPosition }
+  return { employeeName, jobPosition }
 }
 
 export default connect(mapStateToProps, action)(Profile);

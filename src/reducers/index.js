@@ -1,5 +1,5 @@
 const initialState = {
-  name: '',
+  employeeName: '',
   jobPosition: '',
   error: '',
   isLogin: false,
@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
         ...state,
         isLogin: true,
         isLoading: true,
-        name, 
+        employeeName: name, 
         jobPosition,
       }
 

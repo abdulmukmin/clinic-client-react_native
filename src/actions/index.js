@@ -2,6 +2,13 @@ import axios from 'axios';
 
 const apiUrl = 'http://10.0.2.2:3000'
 
+export const saveNewPatient = ({ NIK, name, placeOfBrith, dateOfBrith, identityAddress, domicileAddress, religion, maritalStatus, occupation, nationality, identityCreatedDate, identityValidDate}) => {
+  return () => {
+    console.log(`===================`)
+    console.log({ NIK, name, placeOfBrith, dateOfBrith, identityAddress, domicileAddress, religion, maritalStatus, occupation, nationality, identityCreatedDate, identityValidDate})
+  }
+}
+
 export const loginUser = ({NIK, password}) => {
   return (dispatch) => {
     axios.post(`${apiUrl}/users/signin`, {NIK, password})
