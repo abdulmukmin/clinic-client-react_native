@@ -1,4 +1,5 @@
 const initialState = {
+  modalReview: false,
   employeeName: '',
   jobPosition: '',
   error: '',

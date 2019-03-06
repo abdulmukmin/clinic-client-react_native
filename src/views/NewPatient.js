@@ -5,11 +5,13 @@ import { MKTextField, MKColor, MKButton, MKCheckbox } from 'react-native-materia
 import DatePicker from 'react-native-datepicker';
 import RadioGroup from 'react-native-radio-buttons-group';
 import { Dropdown } from 'react-native-material-dropdown';
+import Modal from './ReviewPatient';
 import * as actions from '../actions';
 
 const style = StyleSheet.create({
   form: {
     marginLeft: 20,
+    marginBottom: 20,
     justifyContent: 'space-between',
     width: 350,
   },
@@ -64,6 +66,7 @@ class AddPatient extends Component {
   state = {
     isSeumurHidupValidity: true,
     isAddressSame: true,
+    isModalReviewVisible: false,
 
     //patient identity
     NIK: '',
@@ -81,7 +84,7 @@ class AddPatient extends Component {
     identityValidDate: 'Seumur hidup',
   }
 
-  saveProcess() {
+  saveProcess = () => {
     const {NIK, name, placeOfBrith, dateOfBrith, identityAddress, domicileAddress, religion, maritalStatus, occupation, nationality, identityCreatedDate, identityValidDate} = this.state;
     this.props.saveNewPatient({ NIK, name, placeOfBrith, dateOfBrith, identityAddress, domicileAddress, religion, maritalStatus, occupation, nationality, identityCreatedDate, identityValidDate});
   }
@@ -272,10 +275,14 @@ class AddPatient extends Component {
               <Text>Seumur hidup</Text>
             </View>
             { this.identityValidDate() }
-          </View>          
-          <SaveButton 
+          </View>
+          <Modal 
+            data={this.state}
+            save={this.saveProcess}
+          />    
+          {/* <SaveButton 
             onPress={this.saveProcess.bind(this)}
-          />
+          /> */}
         </View>
       </ScrollView>
     )
