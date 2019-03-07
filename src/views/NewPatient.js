@@ -5,7 +5,8 @@ import { MKTextField, MKColor, MKButton, MKCheckbox } from 'react-native-materia
 import DatePicker from 'react-native-datepicker';
 import RadioGroup from 'react-native-radio-buttons-group';
 import { Dropdown } from 'react-native-material-dropdown';
-import Modal from './ReviewPatient';
+import ModalReview from './ReviewPatient';
+import ModalReviewSaved from './ResultSavedPatient';
 import * as actions from '../actions';
 
 const style = StyleSheet.create({
@@ -82,6 +83,10 @@ class AddPatient extends Component {
     nationality: '',
     identityCreatedDate: null,
     identityValidDate: 'Seumur hidup',
+  }
+
+  showModalReview() {
+    this.props.showReviewPatient()
   }
 
   saveProcess = () => {
@@ -204,7 +209,7 @@ class AddPatient extends Component {
                   marginLeft: 36
                 }
               }}
-              onDateChange={dateOfBrith => {this.setState({dateOfBrith: new Date(dateOfBrith)})}}
+              onDateChange={dateOfBrith => {this.setState({dateOfBrith})}}
             />
           </View>
           <IdentityAddressField 
@@ -262,7 +267,7 @@ class AddPatient extends Component {
                   marginLeft: 36
                 }
               }}
-              onDateChange={(date) => {this.setState({identityCreatedDate: new Date(date)})}}
+              onDateChange={(identityCreatedDate) => {this.setState({identityCreatedDate})}}
             />
           </View>
           <View style={{ marginTop: 10 }}>
@@ -276,13 +281,14 @@ class AddPatient extends Component {
             </View>
             { this.identityValidDate() }
           </View>
-          <Modal 
+          <ModalReview 
             data={this.state}
             save={this.saveProcess}
-          />    
-          {/* <SaveButton 
-            onPress={this.saveProcess.bind(this)}
-          /> */}
+          />
+          <ModalReviewSaved /> 
+          <SaveButton 
+            onPress={this.showModalReview.bind(this)}
+          />
         </View>
       </ScrollView>
     )

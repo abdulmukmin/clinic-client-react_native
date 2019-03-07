@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Modal, Text, TouchableHighlight, Button, View, Alert, StyleSheet} from 'react-native';
+import {Modal, Text, Button, View, Alert, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
+import * as actions from '../actions';
 
 const styles = StyleSheet.create({
   title: {
@@ -13,13 +14,9 @@ const styles = StyleSheet.create({
   }
 })
 
-class ModalExample extends Component {
-  state = {
-    modalVisible: false,
-  };
-
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+class ModalReview extends Component {
+  hideModalReview() {
+    this.props.hideReviewPatient();
   }
 
   render() {
@@ -29,7 +26,7 @@ class ModalExample extends Component {
         <Modal
           animationType="slide"
           transparent={false}
-          visible={this.state.modalVisible}
+          visible={this.props.modalReview}
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
@@ -85,25 +82,16 @@ class ModalExample extends Component {
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 10}}>
               <Button
-                title="Save and Reserv"
+                title="Save"
                 onPress={this.props.save}
               />
               <Button
                 title="Cancel"
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}
+                onPress={this.hideModalReview.bind(this)}
               />
             </View>
           </View>
         </Modal>
-
-        <Button
-          title="Save"
-          onPress={() => {
-            this.setModalVisible(true);
-          }} 
-        />
       </View>
     );
   }
@@ -115,4 +103,4 @@ mapStateToProps = (state) => {
   return { modalReview };
 }
 
-export default connect(mapStateToProps, null)(ModalExample);
+export default connect(mapStateToProps, actions)(ModalReview);

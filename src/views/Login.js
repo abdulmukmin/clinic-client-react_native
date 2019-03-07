@@ -44,7 +44,6 @@ class Login extends Component {
   }
 
   render() {
-    
     return (
       <View >
         <Text style={style.title}>Login</Text>
